@@ -9,7 +9,7 @@ jobs:
       - uses: actions/setup-java@v5
         with: { distribution: 'temurin', java-version: '21' }
       - run: |
-          curl -4 -L --retry 5 --retry-delay 5 -A "Mozilla/5.0" -o centre.osm.pbf https://download.geofabrik.de/europe/france/centre-latest.osm.pbf
+          curl -L --retry 3 -o centre.osm.pbf https://download.openstreetmap.fr/extracts/europe/france/centre-latest.osm.pbf
           java -Xmx12G -jar otp-2.5.0-shaded.jar --build --save .
       - uses: actions/upload-artifact@v4
         with: { name: graph, path: graph.obj }
