@@ -6,10 +6,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { lfs: true }
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with: { distribution: 'temurin', java-version: '21' }
       - run: |
+          ls -lh
           curl -L -o centre.osm.pbf https://download.geofabrik.de/europe/france/centre-latest.osm.pbf
-          java -Xmx6G -jar otp-2.5.0-shaded.jar --build --save .
+          java -Xmx12G -jar otp-2.5.0-shaded.jar --build --save .
       - uses: actions/upload-artifact@v4
         with: { name: graph, path: graph.obj }
